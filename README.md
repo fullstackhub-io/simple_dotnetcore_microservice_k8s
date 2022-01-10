@@ -1,0 +1,1 @@
+# simple_dotnetcore_microservice_k8s
