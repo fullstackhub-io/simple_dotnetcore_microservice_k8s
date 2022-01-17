@@ -1,0 +1,6 @@
+<h3>Weather Summary</h3>
+<ul>
+  <li *ngFor="let res of response">
+    {{ res.date | date }} | {{ res.summary }} | {{ res.temperatureF }}
+  </li>
+</ul>

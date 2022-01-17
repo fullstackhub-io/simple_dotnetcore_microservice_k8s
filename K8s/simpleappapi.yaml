@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleappapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: simpleappapi
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: simpleappapi
+    spec:
+      containers:
+      - name: simpleappapi
+        image: simpleappapi:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+          protocol: TCP       
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpleappapi-service
+spec:
+  type: LoadBalancer
+  ports:
+   - port: 5000
+     targetPort: 80
+  selector:
+    app: simpleappapi
